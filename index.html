@@ -83,6 +83,7 @@
             <!-- Chat messages will appear here -->
         </div>
         <form id="chat-form" name="seo-query-form" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="seo-query-form" />
             <div class="input-group">
                 <input type="text" id="query-input" class="input-field" name="message" placeholder="Type your message..." required>
                 <button type="submit" class="submit-btn">⏎</button>
@@ -93,22 +94,31 @@
     </div>
     <script>
         document.getElementById('chat-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+            // Prevent default form action if handling submission with JavaScript
+            // e.preventDefault();
             const formData = new FormData(this);
-            fetch('https://hook.us1.make.com/a2zmde3qm3jc4ftqypg1x7cbuq2jqlgw', {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.text())
-            .then(result => {
-                console.log('Success:', result);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+
+            // Optionally handle the form submission via JavaScript here
+            // fetch('/', {
+            //     method: 'POST',
+            //     body: formData,
+            // })
+            // .then(response => {
+            //     if (response.ok) {
+            //         // Handle success
+            //         console.log('Success:', response);
+            //     } else {
+            //         // Handle error
+            //         console.error('Netlify form submission error:', response);
+            //     }
+            // })
+            // .catch(error => {
+            //     console.error('Error:', error);
+            // });
         });
 
         document.getElementById('file-upload').addEventListener('change', function() {
+            // Submit the form when a file is selected
             document.getElementById('chat-form').submit();
         });
     </script>
