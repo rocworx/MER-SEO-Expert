@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mer SEO Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .chat-box {
+            background-color: #202124;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            position: fixed;
+            bottom: 20px;
+            width: calc(80% - 40px); /* Adjusted for padding */
+            max-width: 560px; /* Adjusted for max container width */
+        }
+        .input-field {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #333;
+            color: #FFF;
+        }
+        .submit-btn, .upload-btn {
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-btn {
+            background-color: #555;
+        }
+        label[for="file-upload"], .submit-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .title {
+            color: #FFFFFF;
+            margin: 0;
+            padding-top: 60px;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">MER SEO Expert</h1>
+        <div class="chat-box" id="chat-box">
+            <!-- Chat messages will appear here -->
+        </div>
+        <form id="chat-form">
+            <div class="input-group">
+                <input type="text" id="query-input" class="input-field" name="message" placeholder="Type your message..." required>
+                <button type="submit" class="submit-btn">⏎</button>
+                <label for="file-upload" class="upload-btn">📎</label>
+                <input id="file-upload" type="file" name="file">
+            </div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('chat-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch('https://hook.us1.make.com/a2zmde3qm3jc4ftqypg1x7cbuq2jqlgw', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(result => {
+                console.log('Success:', result);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        document.getElementById('file-upload').addEventListener('change', function() {
+            document.getElementById('chat-form').submit();
+        });
+    </script>
+</body>
+</html>
+
