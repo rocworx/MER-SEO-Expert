@@ -74,6 +74,27 @@
             padding-bottom: 20px;
             text-align: center;
         }
+        .spinner {
+            display: none;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #fff;
+            width: 24px;
+            height: 24px;
+            -webkit-animation: spin 1s linear infinite; /* Safari */
+            animation: spin 1s linear infinite;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -82,7 +103,8 @@
         <div class="chat-box" id="chat-box">
             <!-- Chat messages will appear here -->
         </div>
-        <form id="chat-form" name="seo-query-form" method="POST" data-netlify="true">
+        <form id="chat-form" name="seo-query-form" method="POST" data-netlify="true" action="https://hook.us1.make.com/4eckcw98p5cvly4h7dvpidvvnkb57v3r">
+            <!-- Hidden input for Netlify -->
             <input type="hidden" name="form-name" value="seo-query-form" />
             <div class="input-group">
                 <input type="text" id="query-input" class="input-field" name="message" placeholder="Type your message..." required>
@@ -90,35 +112,32 @@
                 <label for="file-upload" class="upload-btn">📎</label>
                 <input id="file-upload" type="file" name="file">
             </div>
+            <div class="spinner" id="spinner"></div>
         </form>
     </div>
     <script>
         document.getElementById('chat-form').addEventListener('submit', function(e) {
-            // Prevent default form action if handling submission with JavaScript
-            // e.preventDefault();
+            e.preventDefault();
+            const spinner = document.getElementById('spinner');
+            spinner.style.display = 'block';
             const formData = new FormData(this);
-
-            // Optionally handle the form submission via JavaScript here
-            // fetch('/', {
-            //     method: 'POST',
-            //     body: formData,
-            // })
-            // .then(response => {
-            //     if (response.ok) {
-            //         // Handle success
-            //         console.log('Success:', response);
-            //     } else {
-            //         // Handle error
-            //         console.error('Netlify form submission error:', response);
-            //     }
-            // })
-            // .catch(error => {
-            //     console.error('Error:', error);
-            // });
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(result => {
+                console.log('Success:', result);
+                spinner.style.display = 'none';
+                // Process and display the result/response here
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                spinner.style.display = 'none';
+            });
         });
 
         document.getElementById('file-upload').addEventListener('change', function() {
-            // Submit the form when a file is selected
             document.getElementById('chat-form').submit();
         });
     </script>
