@@ -16,8 +16,10 @@
 
         .header {
             width: 100%;
-            padding-top: 20px;
+            padding: 20px;
             text-align: center;
+            position: absolute; /* Position at the top */
+            top: 0;
         }
 
         .header h1 {
@@ -30,15 +32,9 @@
             width: 35%;
             position: absolute; /* Align to the left */
             top: 50%;
-            left: 10%;
+            left: 5%;
             transform: translateY(-50%); /* Center vertically */
             font-size: 1rem;
-            line-height: 1.4; /* Improved line spacing */
-        }
-
-        .instructions p {
-            margin: 0;
-            font-size: 1.1rem; /* Slightly larger font size */
         }
 
         .ow-widget-placeholder {
@@ -52,8 +48,8 @@
 
         .chat-prompt {
             position: fixed; /* Fixed at the bottom right */
-            right: -12%;
-            bottom: 14%;
+            right: 5%;
+            bottom: 5%;
             margin-right: 420px; /* Offset by the widget's width */
             cursor: pointer;
             font-size: 1.2rem;
@@ -64,12 +60,11 @@
             .instructions {
                 width: 80%;
                 left: 10%;
-                top: 15%; /* Increased text area on mobile */
+                top: 20%;
             }
 
             .chat-prompt {
                 margin-right: 20px; /* Adjust for mobile */
-                bottom: 15%; /* Align with the bottom of the widget */
             }
 
             .ow-widget-placeholder {
@@ -86,27 +81,21 @@
         <h1>MER SEO Expert</h1>
     </div>
     <div class="instructions">
-        <p>Welcome to the MER SEO Expert. This chat tool is designed to help maximize SEO on the website, landing pages, and social media posts. Here are some ways you can use this tool:</p>
-        <ul>
-            <li>"Build for me a landing page that maximizes SEO for the Hawaiian Islands"</li>
-            <li>"Write for me a blog post that highlights things to do in Charleston"</li>
-            <li>"Create an instagram post that highlights Destin, FL"</li>
-        </ul>
+        <p>How to use this bot: Welcome to MER SEO Expert. Our bot is designed for continuing medical education (CME) and conference planning. Ask questions like "What are the best SEO practices for CME websites?" or "How can I improve social media engagement for international conferences?"</p>
     </div>
     <div class="chat-prompt">Click here to chat ➤</div>
     <div id="ow-widget-container" class="ow-widget-placeholder">
-        <!-- Placeholder for the chat widget -->
+        <!-- OpenWidget will appear here -->
     </div>
 
     <!-- OpenWidget code -->
     <script>
-      window.__ow = window.__ow || {};
-      window.__ow.organizationId = "affcc034-018c-4175-afa1-085ebc2c19c5";
-      ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[OpenWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.openwidget.com/openwidget.js",t.head.appendChild(n)}};!n.__ow.asyncInit&&e.init(),n.OpenWidget=n.OpenWidget||e}(window,document,[].slice))
+        window.__ow = window.__ow || {};
+        window.__ow.organizationId = "affcc034-018c-4175-afa1-085ebc2c19c5";
+        ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[OpenWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/ja$
     </script>
     <noscript>You need to <a href="https://www.openwidget.com/enable-javascript" rel="noopener nofollow">enable JavaScript</a> to use the communication tool powered by <a href="https://www.openwidget.com/" rel="noopener nofollow" target="_blank">OpenWidget</a></noscript>
     <!-- End of OpenWidget code -->
-
 </body>
 </html>
 
