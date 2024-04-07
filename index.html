@@ -3,142 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mer SEO Interface</title>
+    <title>MER SEO Expert Interface</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #FFFFFF;
+        body, html {
+            height: 100%;
+            margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .container {
-            width: 80%;
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .chat-box {
-            background-color: #202124;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            overflow: hidden;
-            max-height: 500px;
-            overflow-y: auto;
-        }
-        .input-group {
-            display: flex;
-            gap: 10px;
-            position: fixed;
-            bottom: 20px;
-            width: calc(80% - 40px); /* Adjusted for padding */
-            max-width: 560px; /* Adjusted for max container width */
-        }
-        .input-field {
-            flex-grow: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #333;
-            color: #FFF;
-        }
-        .submit-btn, .upload-btn {
-            border: none;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .upload-btn {
-            background-color: #555;
-        }
-        label[for="file-upload"], .submit-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        input[type="file"] {
-            display: none;
+            justify-content: flex-start;
+            background-color: #121212; /* Adjust this color to match your widget's background */
+            font-family: 'Arial', sans-serif;
         }
         .title {
-            color: #FFFFFF;
-            margin: 0;
-            padding-top: 60px;
-            padding-bottom: 20px;
+            margin-top: 30px;
+            color: #fff;
+            font-size: 24px;
             text-align: center;
         }
-        .spinner {
-            display: none;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 4px solid #fff;
-            width: 24px;
-            height: 24px;
-            -webkit-animation: spin 1s linear infinite; /* Safari */
-            animation: spin 1s linear infinite;
+
+        .open-chat-btn {
+            margin-top: 50px; /* Space between title and button */
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px; /* Rounded edges */
+            background-color: #007BFF; /* Button color */
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); /* Shadow for depth */
+            transition: all 0.2s ease-in-out; /* Smooth transition for button press */
         }
 
-        /* Safari */
-        @-webkit-keyframes spin {
-            0% { -webkit-transform: rotate(0deg); }
-            100% { -webkit-transform: rotate(360deg); }
+        .open-chat-btn:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5); /* Larger shadow on hover */
+            transform: scale(1.05); /* Slightly larger on hover */
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .open-chat-btn:active {
+            transform: scale(0.95); /* Slightly smaller on click */
+            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3); /* Smaller shadow on click */
+        }
+
+        .header h1 {
+            margin: 0;
+            color: #ADD8E6; /* Light blue color for the title */
+        }
+
+        .header p {
+            color: #CCCCCC; /* Light grey color for the subtitle */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">MER SEO Expert</h1>
-        <div class="chat-box" id="chat-box">
-            <!-- Chat messages will appear here -->
-        </div>
-        <form id="chat-form" name="seo-query-form" method="POST" data-netlify="true" action="https://hook.us1.make.com/4eckcw98p5cvly4h7dvpidvvnkb57v3r">
-            <!-- Hidden input for Netlify -->
-            <input type="hidden" name="form-name" value="seo-query-form" />
-            <div class="input-group">
-                <input type="text" id="query-input" class="input-field" name="message" placeholder="Type your message..." required>
-                <button type="submit" class="submit-btn">⏎</button>
-                <label for="file-upload" class="upload-btn">📎</label>
-                <input id="file-upload" type="file" name="file">
-            </div>
-            <div class="spinner" id="spinner"></div>
-        </form>
-    </div>
+    <header class="title">
+        <h1>MER SEO Expert</h1>
+        <p>How can we assist you today?</p>
+    </header>
+    <!-- Custom button to manually maximize the chatbot -->
+    <button class="open-chat-btn" onclick="maximizeChatbot()">Click Here!</button>
+    <!-- OpenWidget code -->
     <script>
-        document.getElementById('chat-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const spinner = document.getElementById('spinner');
-            spinner.style.display = 'block';
-            const formData = new FormData(this);
-            fetch(this.action, {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.text())
-            .then(result => {
-                console.log('Success:', result);
-                spinner.style.display = 'none';
-                // Process and display the result/response here
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                spinner.style.display = 'none';
-            });
-        });
+        window.__ow = window.__ow || {};
+        window.__ow.organizationId = "affcc034-018c-4175-afa1-085ebc2c19c5";
+        ;(function(n, t, c) {
+            function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n) }
+            var e = {
+                _q: [],
+                _h: null,
+                _v: "2.0",
+                on: function() { i(["on", c.call(arguments)]) },
+                once: function() { i(["once", c.call(arguments)]) },
+                off: function() { i(["off", c.call(arguments)]) },
+                get: function() {
+                    if (!e._h) throw new Error("[OpenWidget] You can't use getters before load.");
+                    return i(["get", c.call(arguments)])
+                },
+                call: function() { i(["call", c.call(arguments)]) },
+                init: function() {
+                    var n = t.createElement("script");
+                    n.async = !0, n.type = "text/javascript", n.src = "https://cdn.openwidget.com/openwidget.js";
+                    t.head.appendChild(n);
+                }
+            };
+            !n.__ow.asyncInit && e.init();
+            n.OpenWidget = n.OpenWidget || e;
+        })(window, document, [].slice));
 
-        document.getElementById('file-upload').addEventListener('change', function() {
-            document.getElementById('chat-form').submit();
+        // Function to maximize the chatbot
+        function maximizeChatbot() {
+            OpenWidget.call('maximize');
+        }
+
+        // Automatically open the chatbot on page load
+        OpenWidget.on('ready', function() {
+            maximizeChatbot();
         });
     </script>
 </body>
